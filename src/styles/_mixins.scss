@@ -1,0 +1,155 @@
+@import "colors.scss";
+
+@mixin hoverable-background($originalImage, $hoverImage: $originalImage, $pressedImage: $originalImage) {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url($originalImage);
+  
+  &:hover {
+    background-image: url($hoverImage);
+  }
+  
+  &:active {
+    background-image: url($pressedImage);
+  }
+}
+
+@mixin center($type) {
+  @if ($type == 'vertical') {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@mixin inline-block-vertical-top {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@mixin with-bullet {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    background-image: url(/static/images/bullet-fx.svg);
+    background-repeat: no-repeat;
+    margin-right: 6px;
+  }
+}
+
+@mixin with-balance {
+  &::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 7px;
+    width: 10px;
+    height: 10px;
+    background-image: url(/static/images/balance.svg);
+    background-repeat: no-repeat;
+  }
+}
+
+@mixin with-info {
+  &::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 6px;
+    width: 15px;
+    height: 15px;
+    background-image: url(/static/images/ico-info.svg);
+    background-repeat: no-repeat;
+  }
+}
+
+@mixin button-loading {
+  background-image: url(/static/images/network-indicator.svg);
+  background-repeat: no-repeat;
+  background-position: left 5px top 50%;
+  background-size: 12px;
+  
+  padding-left: 18px;
+  opacity: .5;
+}
+
+@mixin function-array-parameter-input-wrapper {
+  &--arrayType {
+    input {
+      &::placeholder {
+        font-size: 11px;
+      }
+    }
+  }
+  // position: relative;
+  // display: inline-block;
+  // color: rgba($white, .6);
+  // font-size: 20px;
+  
+  // &--arrayType {
+  //   &::before {
+  //     position: absolute;
+  //     content: '[';
+  //     top: 0;
+  //     line-height: 38px;
+  //     left: 6px;
+  //   }
+  //   &::after {
+  //     position: absolute;
+  //     content: ']';
+  //     top: 0;
+  //     line-height: 38px;
+  //     right: 6px;
+  //   }
+  // }
+}
+
+@mixin not-draggable {
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+@mixin item-shortcut {
+  content: ''; 
+  height: 21px;
+  display: inline-block !important;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-repeat: no-repeat;
+}
+
+@mixin mac-editor-tab-shortcut-list {
+  
+  @for $i from 1 through 9 {
+    
+    &-mac-#{$i} {
+      &::before { 
+        @include item-shortcut; 
+        width: 29px;
+        background-image: url(/static/images/shortcut-#{$i}.svg) !important; 
+      }
+    }
+  }
+}
+
+@mixin window-editor-tab-shortcut-list {
+  
+  @for $i from 1 through 9 {
+    
+    &-window-#{$i} {
+      &::before { 
+        @include item-shortcut; 
+        width: 42px;
+        background-image: url(/static/images/shortcut-ctrl-#{$i}.svg) !important; 
+      }
+    }
+  }
+}
